@@ -17,6 +17,17 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "@core/*":[
+        "src/app/core/*"
+      ],
+      "@modules/*":[
+        "src/app/modules/*"
+      ],
+      "@shared/*":[
+        "src/app/shared/*"
+      ]
+    },
     "target": "es2020",
     "module": "es2020",
     "lib": [
