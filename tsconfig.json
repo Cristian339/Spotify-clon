@@ -26,6 +26,9 @@
       ],
       "@shared/*":[
         "src/app/shared/*"
+      ],
+      "@data/*": [
+        "src/app/data/*"
       ]
     },
     "target": "es2020",
