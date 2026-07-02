@@ -21,7 +21,7 @@ export class SideBarComponent implements OnInit {
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/', 'auth']
+        router: ['/', 'tracks']
       },
       {
         name: 'Buscar',
@@ -31,37 +31,42 @@ export class SideBarComponent implements OnInit {
       {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
-        router: ['/', 'favorites'],
-        query: { hola: 'mundo' }
+        router: ['/', 'favorites']
       }
     ]
 
     this.mainMenu.accessLink = [
       {
         name: 'Crear lista',
-        icon: 'uil-plus-square'
+        icon: 'uil-plus-square',
+        router: ['/']
       },
       {
         name: 'Canciones que te gustan',
-        icon: 'uil-heart-medical'
+        icon: 'uil-heart-medical',
+        router: ['/', 'favorites']
       }
     ]
 
     this.customOptions = [
       {
-        name: 'Mi lista º1',
+        name: 'Top 50: Global',
         router: ['/']
       },
       {
-        name: 'Mi lista º2',
+        name: 'Chill Mix',
         router: ['/']
       },
       {
-        name: 'Mi lista º3',
+        name: 'Rock Classics',
         router: ['/']
       },
       {
-        name: 'Mi lista º4',
+        name: 'Lo-fi Beats',
+        router: ['/']
+      },
+      {
+        name: 'Discover Weekly',
         router: ['/']
       }
     ]

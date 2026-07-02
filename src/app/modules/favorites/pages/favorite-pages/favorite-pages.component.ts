@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TrackModel } from '@core/models/tracks.model';
+import { FavoriteService } from '@shared/services/favorite.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-favorite-pages',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritePagesComponent implements OnInit {
 
-  constructor() { }
+  listResults$: Observable<TrackModel[]> = new Observable()
+
+  constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
+    this.listResults$ = this.favoriteService.favoriteTracks$
   }
 
 }

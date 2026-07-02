@@ -152,3 +152,28 @@
     color: var(--color-4);
     font-size: var(--font-size-2);
 }
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.volume-range {
+    width: 100px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: var(--color-2);
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--color-4);
+    border-radius: 50%;
+    cursor: pointer;
+}

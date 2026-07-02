@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from '@shared/shared.module';
 
 import { TrackPagesComponent } from './track-pages.component';
 
@@ -8,9 +9,10 @@ describe('TrackPagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TrackPagesComponent ]
+      imports: [SharedModule],
+      declarations: [TrackPagesComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TrackPagesComponent);
     component = fixture.componentInstance;
