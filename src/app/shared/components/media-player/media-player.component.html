@@ -18,8 +18,7 @@
 <!-- ZONE TEMPLATES -->
 
 <ng-template #artistZone>
-    <div class="artist-inside" *ngIf="true">
-        <!-- "multimediaService.trackInfo$ | async as mockCover" -->
+    <div class="artist-inside" *ngIf="multimediaService.trackInfo$ | async as mockCover">
 
         <img [src]="mockCover.cover" alt="" class="cover">
         <div class="track-info">
@@ -41,13 +40,11 @@
             <button class="arrow btn">
                 <i class="uil uil-previous"></i>
             </button>
-            <button class="play btn">
-                <!-- (click)="multimediaService.togglePlayer()" -->
-                <i class="uil "></i>
-                <!-- [ngClass]="{
-                    'uil-play-circle':state === 'paused',
-                    'uil-pause-circle':state !== 'paused'
-                }" -->
+            <button (click)="multimediaService.togglePlayer()" class="play btn">
+                <i class="uil " [ngClass]="{
+                    'uil-play-circle':state === 'paused' || state === 'ended',
+                    'uil-pause-circle':state !== 'paused' && state !== 'ended'
+                }"></i>
             </button>
             <button class="arrow btn">
                 <i class="uil uil-step-forward"></i>
@@ -55,30 +52,32 @@
         </div>
         <div class="media-linetime">
 
-            <div class="time">00</div>
-            <!-- {{multimediaService.timeElapsed$ | async}} -->
-            <span #progressBar class="time-progress">
-                <!-- (click)="handlePosition($event)" -->
-                <span class="time-progress-live" [style.width]=" 10 +'%'">
-                    <!-- (multimediaService.playerPercentage$ | async) -->
+            <div class="time">{{multimediaService.timeElapsed$ | async}}</div>
+            <span #progressBar (click)="handlePosition($event)" class="time-progress">
+                <span class="time-progress-live" [style.width]=" (multimediaService.playerPercentage$ | async) +'%'">
                 </span>
             </span>
-            <div class="time">{{99}}</div>
-            <!-- multimediaService.timeRemaining$ | async -->
+            <div class="time">{{multimediaService.timeRemaining$ | async}}</div>
         </div>
     </div>
 </ng-template>
 
 <ng-template #playerAudio>
-    < <div class="player-audio-inside">
+    <div class="player-audio-inside">
         <button class="btn-media">
             <i class="uil uil-list-ui-alt"></i>
         </button>
         <button class="btn-media">
             <i class="uil uil-boombox"></i>
         </button>
-        <button class="btn-media">
-            <i class="uil uil-volume-off"></i>
-        </button>
+        <div class="volume-control">
+            <button class="btn-media">
+                <i class="uil" [ngClass]="{
+                    'uil-volume-off': (multimediaService.volume$ | async) === 0,
+                    'uil-volume': (multimediaService.volume$ | async)! > 0
+                }"></i>
+            </button>
+            <input type="range" min="0" max="100" [value]="(multimediaService.volume$ | async)! * 100" (input)="onChangeVolume($event)" class="volume-range">
         </div>
+    </div>
 </ng-template>

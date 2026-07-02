@@ -10,7 +10,7 @@ import { TrackModel } from '@core/models/tracks.model';
 export class SectionGenericComponent implements OnInit {
 @Input() title: string = ''
 @Input() mode: 'small' | 'big' = 'big'
-@Input() dataTracks: Array<TrackModel> = []
+@Input() dataTracks: Array<TrackModel> | null = []
   constructor() { }
 
   ngOnInit(): void {

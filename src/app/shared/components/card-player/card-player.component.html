@@ -1,14 +1,11 @@
 <!-- Diseño del mode (small)-->
-<div *ngIf="mode==='small'" class="card-player player-small">
+<div *ngIf="mode==='small'" class="card-player player-small" (click)="sendPlay(track)">
     <img [src]="track.cover" [alt]="track.name" class="cover">
     <div class="content-player">
         {{track.name}}
     </div>
     <div class="buttons-player">
-        <button *ngIf="true" class="play-btn">
-            <i class="uil " [ngClass]="{'uil-play':true}"></i>
-        </button>
-        <button *ngIf="false" class="play-btn">
+        <button class="play-btn">
             <i class="uil uil-play"></i>
         </button>
     </div>
@@ -17,19 +14,24 @@
 <!-- Diseño del mode (big)-->
 <div *ngIf="mode==='big'" class="card-player player-big">
 
-    <img appImgBroken  [src]="track.cover" alt="" class="cover">
-<!-- [customImg]="'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'" -->
+    <div class="image-container" (click)="sendPlay(track)">
+        <img appImgBroken [src]="track.cover" alt="" class="cover">
+        <button class="play-btn-overlay">
+            <i class="uil uil-play"></i>
+        </button>
+    </div>
+
     <div class="content-player">
         <div class="title-track">{{track.name}}</div>
-        <div class="sub-title-track">{{track.name}}</div>
+        <div class="sub-title-track">{{track.album}}</div>
     </div>
     <div class="buttons-player">
-        <button *ngIf="true" class="play-btn">
-            <!-- (click)="sendPlay(track)" -->
-            <i class="uil " [ngClass]="{'uil-play':true}"></i>
-        </button>
-        <button *ngIf="false" class="play-btn">
-            <i class="uil uil-play"></i>
+        <button (click)="toggleFavorite(track)" class="favorite-btn">
+            <i class="uil" [ngClass]="{
+                'uil-heart-alt': !favoriteService.isFavorite(track),
+                'uil-heart': favoriteService.isFavorite(track),
+                'is-favorite': favoriteService.isFavorite(track)
+            }"></i>
         </button>
     </div>
 </div>

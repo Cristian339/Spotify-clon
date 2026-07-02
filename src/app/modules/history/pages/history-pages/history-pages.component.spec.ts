@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SharedModule } from '@shared/shared.module';
 import { HistoryPagesComponent } from './history-pages.component';
 
 describe('HistoryPagesComponent', () => {
@@ -8,6 +9,10 @@ describe('HistoryPagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        SharedModule
+      ],
       declarations: [ HistoryPagesComponent ]
     })
     .compileComponents();

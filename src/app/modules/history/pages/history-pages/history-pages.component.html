@@ -1,1 +1,9 @@
-<p>history-pages works!</p>
+<div class="history-page">
+    <div class="search-wrapper">
+        <input (input)="receiveData($event)" type="text" placeholder="Buscar por artista o canción">
+    </div>
+    <div class="history-list">
+        <app-section-generic [dataTracks]="listResults$ | async" [mode]="'small'" [title]="'Resultados de búsqueda'">
+        </app-section-generic>
+    </div>
+</div>
